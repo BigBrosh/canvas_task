@@ -40,7 +40,7 @@
   outline: none;
 }
 
-/*.main_wrapp button:hover {
+.main_wrapp button:hover {
   transform: scale(1.2);
   transition: transform .2s;
 }
@@ -55,4 +55,4 @@
 
 .line_width > * {
   vertical-align: middle;
-}*/
+}
