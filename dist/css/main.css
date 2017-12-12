@@ -26,3 +26,33 @@
 .main_wrapp input[type='color'] {
   cursor: pointer;
 }
+
+.main_wrapp button {
+  margin: 0 5px;
+  cursor: pointer;
+  padding: 6px 14px;
+  border: none;
+  background-color: #59a6ff;
+  color: white;
+  border-radius: 14px;
+  transform: scale(1);
+  transition: transform .2s;
+  outline: none;
+}
+
+/*.main_wrapp button:hover {
+  transform: scale(1.2);
+  transition: transform .2s;
+}
+
+.state_buttons {
+  margin-bottom: 30px;
+}
+
+#canvas_wrap, #clear, .state_buttons {
+  align-self: center;
+}
+
+.line_width > * {
+  vertical-align: middle;
+}*/
