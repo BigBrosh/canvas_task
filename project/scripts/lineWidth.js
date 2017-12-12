@@ -1,12 +1,25 @@
 // line width through range
 lineWidthI.value = lineWidthR.value;
+clWidth = lineWidthI.value;
 
 lineWidthR.oninput = () => {
-  lineWidthI.value = lineWidthR.value;
+	lineWidthI.value = lineWidthR.value;
+	clWidth = lineWidthR.value;
 }
 
 
 // line width through input
+clWidth = lineWidthR.value;
+
 lineWidthI.oninput = () => {
-  lineWidthR.value = lineWidthI.value;
+	if (lineWidthI.value > lineWidthR.max) {
+		lineWidthI.value = lineWidthR.max;
+	}
+
+	else if (lineWidthI.value < lineWidthR.min) {
+		lineWidthI.value = lineWidthR.min;
+	}
+
+	lineWidthR.value = lineWidthI.value;
+	clWidth = lineWidthI.value;
 }
