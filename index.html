@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div class="main_wrapp">
+		<canvas id='canvas_wrap'>Canvas isn't supported by your browser</canvas>
+
+		<div class="state_buttons">
+			<button id="prevBtn">prev</button>
+			<button id="nextBtn">next</button>
+		</div>
+
+		<div class="line_width">
+			<label for="lineWidthI">Line width: </label>
+			<input type="text" name="" id="lineWidthI">
+			<input type="range" name="" id="lineWidthR" min="1" max="10" value="1">
+		</div>
+
+		<div class="color_wrap">
+			<label for="colorChange">Line color: </label>
+			<input type="color" id="colorChange">
+		</div>
+
+		<div class="canvasWidthWrap">
+			<label for="canvasWidth">Canvas width: </label>
+			<input type="text" id="canvasWidth">
+			<button id="applyWidth">Apply</button>
+		</div>
+
+		<div class="canvasHeightWrap">
+			<label for="canvasHeight">Canvas height: </label>
+			<input type="text" id="canvasHeight">
+			<button id="applyHeight">Apply</button>
+		</div>
+
+		<button id="clear">Clear canvas</button>
+	</div>
+	<script src="dist/compiled.js"></script>
+</body>
+</html>
