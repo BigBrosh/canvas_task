@@ -1,0 +1,1 @@
+canvasHeight.value = wrap.height;

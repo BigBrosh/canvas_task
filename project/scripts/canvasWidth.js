@@ -1,0 +1,1 @@
+canvasWidth.value = wrap.width;
