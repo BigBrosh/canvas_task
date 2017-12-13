@@ -7,3 +7,5 @@ window.canvasHeight = document.getElementById('canvasHeight');
 window.widthBtn = document.getElementById('applyWidth');
 window.heightBtn = document.getElementById('applyHeight');
 window.clearBtn = document.getElementById('clear');
+window.colorInput = document.getElementById('colorChange');
+window.clColor = 'black';

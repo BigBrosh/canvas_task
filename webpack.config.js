@@ -5,7 +5,8 @@ module.exports = {
 	'./project/scripts/canvasWidth.js', 
 	'./project/scripts/canvasHeight.js', 
 	'./project/scripts/drawLine.js',
-	'./project/scripts/clearCanvas.js'
+	'./project/scripts/clearCanvas.js',
+	'./project/scripts/lineColor.js'
 	],
 
 	output: {

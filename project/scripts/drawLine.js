@@ -12,7 +12,7 @@ wrap.onmousedown = (e) => {
 	element.lineTo(xEnd, yEnd);
 	element.closePath();
 	element.fill();
-	element.strokeStyle = 'black';
+	element.strokeStyle = clColor;
 	element.lineWidth = clWidth;
 	element.stroke();
   }
