@@ -2,13 +2,8 @@ wrap.onmousedown = (e) => {
 	var xBegin = e.offsetX,
 		yBegin = e.offsetY;
   
-	console.log(xBegin + ' ' + yBegin);
 	element.beginPath();
 	element.moveTo(xBegin, yBegin);
-
-	wrap.onmousemove = (e) => {
-		console.log(e.offsetX + ' ' + e.offsetY);
-	}
 
 	wrap.onmouseup = (e) => {
 	var xEnd = e.offsetX,
