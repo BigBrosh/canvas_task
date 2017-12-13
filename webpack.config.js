@@ -8,7 +8,8 @@ module.exports = {
 	'./project/scripts/clearCanvas.js',
 	'./project/scripts/lineColor.js',
 	'./project/scripts/prev.js',
-	'./project/scripts/next.js'
+	'./project/scripts/next.js',
+	'./project/scripts/saveButton.js'
 	],
 
 	output: {

@@ -24,3 +24,6 @@ window.prevBtn = document.getElementById('prevBtn');
 window.nextBtn = document.getElementById('nextBtn');
 window.setCounter = -1;
 window.currentImgSet = [];
+
+//save button
+window.saveBtn = document.getElementById('save');
