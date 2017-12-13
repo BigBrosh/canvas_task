@@ -16,7 +16,7 @@
 }
 
 table td {
-  padding: 4px 0;
+  padding: 4px 8px 4px 0;
 }
 
 table td > * {
@@ -63,5 +63,5 @@ table td > * {
 }
 
 .buttons_wrap {
-  margin-top: 10px;
+  margin-top: 15px;
 }
