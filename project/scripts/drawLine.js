@@ -7,7 +7,7 @@ wrap.onmousedown = (e) => {
 
 	wrap.onmouseup = (e) => {
 	var xEnd = e.offsetX,
-		  yEnd = e.offsetY;
+		yEnd = e.offsetY;
 	
 	element.lineTo(xEnd, yEnd);
 	element.closePath();
@@ -15,6 +15,10 @@ wrap.onmousedown = (e) => {
 	element.strokeStyle = clColor;
 	element.lineWidth = clWidth;
 	element.stroke();
+
+	while(setCounter != currentImgSet.length - 1){
+		currentImgSet.pop();
+	}
 
 	setCounter += 1;
     currentImgSet.push(element.getImageData(0, 0, wrap.width, wrap.height));
