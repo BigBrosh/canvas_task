@@ -15,5 +15,8 @@ wrap.onmousedown = (e) => {
 	element.strokeStyle = clColor;
 	element.lineWidth = clWidth;
 	element.stroke();
+
+	setCounter += 1;
+    currentImgSet.push(element.getImageData(0, 0, wrap.width, wrap.height));
   }
 }
