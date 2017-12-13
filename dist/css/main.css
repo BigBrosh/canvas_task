@@ -20,6 +20,7 @@
 }
 
 .main_wrapp input[type='range'] {
+  cursor: -webkit-grab;
   cursor: grab;
 }
 
@@ -49,10 +50,14 @@
   margin-bottom: 30px;
 }
 
-#canvas_wrap, #clear, .state_buttons {
+#canvas_wrap, .state_buttons, .buttons_wrap {
   align-self: center;
 }
 
 .line_width > * {
   vertical-align: middle;
+}
+
+.buttons_wrap {
+  margin-top: 15px;
 }
