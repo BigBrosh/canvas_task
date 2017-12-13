@@ -1,5 +1,6 @@
 canvasWidth.value = wrap.width;
 
 widthBtn.onclick = () => {
-  wrap.style.width = canvasWidth.value + 'px';
+  wrap.width = canvasWidth.value;
+  element.putImageData(currentImgSet[setCounter], 0, 0);
 }
