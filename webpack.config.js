@@ -1,5 +1,12 @@
 module.exports = {
-	entry: ['./project/scripts/variables.js', './project/scripts/lineWidth.js', './project/scripts/canvasWidth.js', './project/scripts/canvasHeight.js', './project/scripts/drawLine.js'],
+	entry: [
+	'./project/scripts/variables.js', 
+	'./project/scripts/lineWidth.js', 
+	'./project/scripts/canvasWidth.js', 
+	'./project/scripts/canvasHeight.js', 
+	'./project/scripts/drawLine.js',
+	'./project/scripts/clearCanvas.js'
+	],
 
 	output: {
 	path: __dirname + "/dist/js",
