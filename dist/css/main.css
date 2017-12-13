@@ -15,6 +15,14 @@
   margin-bottom: 12px;
 }
 
+table td {
+  padding: 4px 0;
+}
+
+table td > * {
+  vertical-align: middle;
+}
+
 .main_wrapp input {
   padding: 3px;
 }
@@ -54,10 +62,6 @@
   align-self: center;
 }
 
-.line_width > * {
-  vertical-align: middle;
-}
-
 .buttons_wrap {
-  margin-top: 15px;
+  margin-top: 10px;
 }
