@@ -1,16 +1,25 @@
+var lineWidthR = document.getElementById('lineWidthR'),
+		lineWidthI = document.getElementById('lineWidthI'),
+		clWidth = lineWidthI.value;
+
+var lineWidth = class {
+	constructor(clWidth) {
+		this._width = clWidth;
+	}
+}
+
+export var LineWidth = new lineWidth(clWidth);
+
+
 // line width through range
 lineWidthI.value = lineWidthR.value;
-clWidth = lineWidthI.value;
 
 lineWidthR.oninput = () => {
 	lineWidthI.value = lineWidthR.value;
-	clWidth = lineWidthR.value;
+	LineWidth._width = lineWidthR.value;
 }
 
-
 // line width through input
-clWidth = lineWidthR.value;
-
 lineWidthI.oninput = () => {
 	if (lineWidthI.value > lineWidthR.max) {
 		lineWidthI.value = lineWidthR.max;
@@ -21,5 +30,5 @@ lineWidthI.oninput = () => {
 	}
 
 	lineWidthR.value = lineWidthI.value;
-	clWidth = lineWidthI.value;
+	LineWidth._width = lineWidthI.value;
 }

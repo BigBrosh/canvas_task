@@ -8,7 +8,8 @@ module.exports = {
 	'./project/scripts/saveButton.js',
 	'./project/scripts/lineColor.js',
 	'./project/scripts/canvasWidth.js',
-	'./project/scripts/canvasHeight.js'],
+	'./project/scripts/canvasHeight.js',
+	'./project/scripts/lineWidth.js'],
 
 	output: {
 	path: __dirname + "/dist/js",

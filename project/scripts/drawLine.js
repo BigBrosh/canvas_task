@@ -1,4 +1,5 @@
 import {StateHandler} from './variables';
+import {LineWidth} from './lineWidth';
 
 StateHandler._wrap.onmousedown = (e) => {
 	var xBegin = e.offsetX,
@@ -15,7 +16,7 @@ StateHandler._wrap.onmousedown = (e) => {
 	StateHandler._element.closePath();
 	StateHandler._element.fill();
 	StateHandler._element.strokeStyle = 'black';
-	StateHandler._element.lineWidth = 3;
+	StateHandler._element.lineWidth = LineWidth._width;
 	StateHandler._element.stroke();
 
 	while(StateHandler._setCounter != StateHandler._currentImgSet.length - 1){
