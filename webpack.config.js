@@ -9,7 +9,8 @@ module.exports = {
 	'./project/scripts/lineColor.js',
 	'./project/scripts/canvasWidth.js',
 	'./project/scripts/canvasHeight.js',
-	'./project/scripts/lineWidth.js'],
+	'./project/scripts/lineWidth.js',
+	'./project/scripts/UIController.js'],
 
 	output: {
 	path: __dirname + "/dist/js",

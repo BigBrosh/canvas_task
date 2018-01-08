@@ -1,14 +1,7 @@
+import {LineWidth} from './UIController';
+
 var lineWidthR = document.getElementById('lineWidthR'),
-		lineWidthI = document.getElementById('lineWidthI'),
-		clWidth = lineWidthI.value;
-
-var lineWidth = class {
-	constructor(clWidth) {
-		this._width = clWidth;
-	}
-}
-
-export var LineWidth = new lineWidth(clWidth);
+		lineWidthI = document.getElementById('lineWidthI');
 
 
 // line width through range
@@ -16,7 +9,7 @@ lineWidthI.value = lineWidthR.value;
 
 lineWidthR.oninput = () => {
 	lineWidthI.value = lineWidthR.value;
-	LineWidth._width = lineWidthR.value;
+	LineWidth._property = lineWidthR.value;
 }
 
 // line width through input
@@ -30,5 +23,5 @@ lineWidthI.oninput = () => {
 	}
 
 	lineWidthR.value = lineWidthI.value;
-	LineWidth._width = lineWidthI.value;
+	LineWidth._property = lineWidthI.value;
 }
