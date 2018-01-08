@@ -1,6 +1,12 @@
-canvasWidth.value = wrap.width;
+import {StateHandler} from './variables';
+
+
+var canvasWidth = document.getElementById('canvasWidth'),
+	widthBtn = document.getElementById('applyWidth');
+
+canvasWidth.value = StateHandler._wrap.width;
 
 widthBtn.onclick = () => {
-  wrap.width = canvasWidth.value;
-  element.putImageData(currentImgSet[setCounter], 0, 0);
+  StateHandler._wrap.width = canvasWidth.value;
+  StateHandler._element.putImageData(StateHandler._currentImgSet[StateHandler._setCounter], 0, 0);
 }

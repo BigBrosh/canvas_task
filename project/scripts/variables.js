@@ -6,22 +6,9 @@ var wrap = document.getElementById('canvas_wrap'),
 	lineWidthR = document.getElementById('lineWidthR'),
 	lineWidthI = document.getElementById('lineWidthI'),
 
-// canvas size
-	canvasWidth = document.getElementById('canvasWidth'),
-	canvasHeight = document.getElementById('canvasHeight'),
-	widthBtn = document.getElementById('applyWidth'),
-	heightBtn = document.getElementById('applyHeight'),
-
-// color
-	colorInput = document.getElementById('colorChange'),
-	clColor = 'black',
-
 // states
 	setCounter = -1,
-	currentImgSet = [],
-
-//save button
-	saveBtn = document.getElementById('save');
+	currentImgSet = [];
 
 
 
