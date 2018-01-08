@@ -1,6 +1,4 @@
 import {StateHandler} from './variables';
-import {LineWidth} from './lineWidth';
-import {LineColor} from './lineColor';
 import {LineWidth, LineColor} from './UIController';
 
 StateHandler._wrap.onmousedown = (e) => {
