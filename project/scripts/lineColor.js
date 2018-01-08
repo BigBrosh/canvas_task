@@ -1,6 +1,15 @@
 var colorInput = document.getElementById('colorChange'),
 	clColor = 'black';
 
+var lineColor = class {
+	constructor(color) {
+		this._color = color;
+	}
+}
+
+export var LineColor = new lineColor(clColor);
+
+
 colorInput.oninput = () => {
-  clColor = colorInput.value;
+  LineColor._color = colorInput.value;
 }

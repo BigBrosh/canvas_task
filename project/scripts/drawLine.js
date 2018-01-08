@@ -1,5 +1,6 @@
 import {StateHandler} from './variables';
 import {LineWidth} from './lineWidth';
+import {LineColor} from './lineColor';
 
 StateHandler._wrap.onmousedown = (e) => {
 	var xBegin = e.offsetX,
@@ -15,7 +16,7 @@ StateHandler._wrap.onmousedown = (e) => {
 	StateHandler._element.lineTo(xEnd, yEnd);
 	StateHandler._element.closePath();
 	StateHandler._element.fill();
-	StateHandler._element.strokeStyle = 'black';
+	StateHandler._element.strokeStyle = LineColor._color;
 	StateHandler._element.lineWidth = LineWidth._width;
 	StateHandler._element.stroke();
 
