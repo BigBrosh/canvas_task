@@ -1,29 +1,68 @@
 // canvas
-window.wrap = document.getElementById('canvas_wrap');
-window.element = wrap.getContext('2d');
+var wrap = document.getElementById('canvas_wrap'),
+	element = wrap.getContext('2d'),
 
 // line
-window.lineWidthR = document.getElementById('lineWidthR');
-window.lineWidthI = document.getElementById('lineWidthI');
+	lineWidthR = document.getElementById('lineWidthR'),
+	lineWidthI = document.getElementById('lineWidthI'),
 
 // canvas size
-window.canvasWidth = document.getElementById('canvasWidth');
-window.canvasHeight = document.getElementById('canvasHeight');
-window.widthBtn = document.getElementById('applyWidth');
-window.heightBtn = document.getElementById('applyHeight');
+	canvasWidth = document.getElementById('canvasWidth'),
+	canvasHeight = document.getElementById('canvasHeight'),
+	widthBtn = document.getElementById('applyWidth'),
+	heightBtn = document.getElementById('applyHeight'),
 
 // clear button
-window.clearBtn = document.getElementById('clear');
+	clearBtn = document.getElementById('clear'),
 
 // color
-window.colorInput = document.getElementById('colorChange');
-window.clColor = 'black';
+	colorInput = document.getElementById('colorChange'),
+	clColor = 'black',
 
 // undo/redo
-window.prevBtn = document.getElementById('prevBtn');
-window.nextBtn = document.getElementById('nextBtn');
-window.setCounter = -1;
-window.currentImgSet = [];
+	prevBtn = document.getElementById('prevBtn'),
+	nextBtn = document.getElementById('nextBtn'),
+	setCounter = -1,
+	currentImgSet = [],
 
 //save button
-window.saveBtn = document.getElementById('save');
+	saveBtn = document.getElementById('save');
+
+
+
+var stateHandler = class {
+	constructor(wrap, element, setCounter, currentImgSet) {
+		this._wrap = wrap;
+		this._element = element;
+		this._setCounter = setCounter;
+		this._currentImgSet = currentImgSet;
+	}
+
+	// getters
+	get wrap() {
+		return wrap;
+	}
+
+	get element() {
+		return element;
+	}
+
+	get setCounter() {
+		return setCounter;
+	}
+
+	get currentImgSet() {
+		return currentImgSet;
+	}
+
+	//main methods
+	increaseSetCounter() {
+		this.setCounter++;
+	}
+
+	decreaseSetCounter() {
+		this.setCounter--;
+	}
+}
+
+export var StateHandler = new stateHandler(wrap, element, setCounter, currentImgSet);

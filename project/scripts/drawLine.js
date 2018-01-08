@@ -1,26 +1,28 @@
-wrap.onmousedown = (e) => {
+import {StateHandler} from './variables';
+
+StateHandler._wrap.onmousedown = (e) => {
 	var xBegin = e.offsetX,
 		yBegin = e.offsetY;
   
-	element.beginPath();
-	element.moveTo(xBegin, yBegin);
+	StateHandler._element.beginPath();
+	StateHandler._element.moveTo(xBegin, yBegin);
 
-	wrap.onmouseup = (e) => {
+	StateHandler._wrap.onmouseup = (e) => {
 	var xEnd = e.offsetX,
 		yEnd = e.offsetY;
 	
-	element.lineTo(xEnd, yEnd);
-	element.closePath();
-	element.fill();
-	element.strokeStyle = clColor;
-	element.lineWidth = clWidth;
-	element.stroke();
+	StateHandler._element.lineTo(xEnd, yEnd);
+	StateHandler._element.closePath();
+	StateHandler._element.fill();
+	StateHandler._element.strokeStyle = 'black';
+	StateHandler._element.lineWidth = 3;
+	StateHandler._element.stroke();
 
-	while(setCounter != currentImgSet.length - 1){
-		currentImgSet.pop();
+	while(StateHandler._setCounter != StateHandler._currentImgSet.length - 1){
+		StateHandler._currentImgSet.pop();
 	}
 
-	setCounter += 1;
-    currentImgSet.push(element.getImageData(0, 0, wrap.width, wrap.height));
+	StateHandler._setCounter += 1;
+    StateHandler._currentImgSet.push(StateHandler._element.getImageData(0, 0, StateHandler._wrap.width, StateHandler._wrap.height));
   }
 }
