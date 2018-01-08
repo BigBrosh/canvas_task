@@ -12,9 +12,6 @@ var wrap = document.getElementById('canvas_wrap'),
 	widthBtn = document.getElementById('applyWidth'),
 	heightBtn = document.getElementById('applyHeight'),
 
-// clear button
-	clearBtn = document.getElementById('clear'),
-
 // color
 	colorInput = document.getElementById('colorChange'),
 	clColor = 'black',
