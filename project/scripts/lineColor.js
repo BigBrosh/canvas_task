@@ -1,15 +1,7 @@
-var colorInput = document.getElementById('colorChange'),
-	clColor = 'black';
+import {LineColor} from './UIController';
 
-var lineColor = class {
-	constructor(color) {
-		this._color = color;
-	}
-}
-
-export var LineColor = new lineColor(clColor);
-
+var colorInput = document.getElementById('colorChange');
 
 colorInput.oninput = () => {
-  LineColor._color = colorInput.value;
+  LineColor._property = colorInput.value;
 }

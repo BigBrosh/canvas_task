@@ -1,7 +1,7 @@
 import {StateHandler} from './variables';
 import {LineWidth} from './lineWidth';
 import {LineColor} from './lineColor';
-import {LineWidth} from './UIController';
+import {LineWidth, LineColor} from './UIController';
 
 StateHandler._wrap.onmousedown = (e) => {
 	var xBegin = e.offsetX,
@@ -17,7 +17,7 @@ StateHandler._wrap.onmousedown = (e) => {
 	StateHandler._element.lineTo(xEnd, yEnd);
 	StateHandler._element.closePath();
 	StateHandler._element.fill();
-	StateHandler._element.strokeStyle = LineColor._color;
+	StateHandler._element.strokeStyle = LineColor._property;
 	StateHandler._element.lineWidth = LineWidth._property;
 	StateHandler._element.stroke();
 
