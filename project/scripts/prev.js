@@ -1,11 +1,15 @@
+import {StateHandler} from './variables';
+
+var prevBtn = document.getElementById('prevBtn');
+
 prevBtn.onclick = () => {
-	if (setCounter <= 0) {
-		element.clearRect(0, 0, wrap.width, wrap.height);
-		setCounter = -1;
+	if (StateHandler._setCounter <= 0) {
+		StateHandler._element.clearRect(0, 0, StateHandler._wrap.width, StateHandler._wrap.height);
+		StateHandler.decreaseSetCounter();
 	}
 
 	else {
-		setCounter -= 1;
-		element.putImageData(currentImgSet[setCounter], 0, 0);
+		StateHandler.decreaseSetCounter();
+		StateHandler._element.putImageData(StateHandler._currentImgSet[StateHandler._setCounter], 0, 0);
 	}
 }

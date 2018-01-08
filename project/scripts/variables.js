@@ -19,9 +19,7 @@ var wrap = document.getElementById('canvas_wrap'),
 	colorInput = document.getElementById('colorChange'),
 	clColor = 'black',
 
-// undo/redo
-	prevBtn = document.getElementById('prevBtn'),
-	nextBtn = document.getElementById('nextBtn'),
+// states
 	setCounter = -1,
 	currentImgSet = [],
 
@@ -57,11 +55,11 @@ var stateHandler = class {
 
 	//main methods
 	increaseSetCounter() {
-		this.setCounter++;
+		this._setCounter++;
 	}
 
 	decreaseSetCounter() {
-		this.setCounter--;
+		this._setCounter--;
 	}
 }
 
