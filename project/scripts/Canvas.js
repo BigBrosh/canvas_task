@@ -1,6 +1,3 @@
-import {UIController} from './UIController';
-import {StateHandler} from './StateHandler';
-
 export var Canvas = new class {
 	constructor() {
 		this._wrap = document.getElementById('canvas_wrap');
