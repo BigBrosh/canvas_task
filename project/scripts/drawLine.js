@@ -23,7 +23,8 @@ StateHandler._wrap.onmousedown = (e) => {
 		StateHandler._currentImgSet.pop();
 	}
 
-	StateHandler._setCounter += 1;
+	StateHandler.increaseSetCounter();
+	console.log(StateHandler._setCounter);
     StateHandler._currentImgSet.push(StateHandler._element.getImageData(0, 0, StateHandler._wrap.width, StateHandler._wrap.height));
   }
 }
