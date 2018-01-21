@@ -6,8 +6,7 @@ module.exports = {
 	'./project/scripts/next.js',
 	'./project/scripts/clearCanvas.js',
 	'./project/scripts/saveButton.js',
-	'./project/scripts/canvasWidth.js',
-	'./project/scripts/canvasHeight.js',
+	'./project/scripts/Canvas.js',
 	'./project/scripts/UIController.js'],
 
 	output: {
