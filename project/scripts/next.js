@@ -1,4 +1,4 @@
-import {StateHandler} from './variables';
+import {StateHandler} from './StateHandler';
 
 var nextBtn = document.getElementById('nextBtn');
 

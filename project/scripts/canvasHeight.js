@@ -1,4 +1,4 @@
-import {StateHandler} from './variables';
+import {StateHandler} from './StateHandler';
 
 var canvasHeight = document.getElementById('canvasHeight'),
 	heightBtn = document.getElementById('applyHeight');

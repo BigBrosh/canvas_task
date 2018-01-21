@@ -1,17 +1,47 @@
 // creating parent class
-var UIController = class {
-	constructor(property) {
-		this._property = property;
+export var UIController = new class {
+	constructor() {
+		this._lineWidth = 1;
+		this._lineColor = "#000";
+	}
+
+	set LineWidth(param) {
+		this._width = param;
+	}
+
+	set LineColor(param) {
+		this._lineColor = param;
 	}
 }
 
-// extra for width changing 
-var lineWidthI = document.getElementById('lineWidthI'),
-	clWidth = lineWidthI.value;
 
-// extra for color changing 
-var colorInput = document.getElementById('colorChange'),
-	clColor = colorInput.value;
+// line width
+var lineWidthR = document.getElementById('lineWidthR'),
+	lineWidthI = document.getElementById('lineWidthI');
 
-export var LineWidth = new UIController(clWidth);
-export var LineColor = new UIController(clColor);
+lineWidthI.value = UIController._lineWidth;
+lineWidthR.value = lineWidthI.value;
+
+lineWidthR.oninput = () => {
+	lineWidthI.value = lineWidthR.value;
+	UIController._lineWidth = lineWidthR.value;
+}
+
+lineWidthI.oninput = () => {
+	if (lineWidthI.value > 10)
+		lineWidthI.value = 10;
+
+	else if (lineWidthI.value < 1)
+		lineWidthI.value = 1
+
+	lineWidthR.value = lineWidthI.value;
+	UIController._lineWidth = lineWidthR.value;
+}
+
+
+// line Color
+var colorInput = document.getElementById('colorChange');
+
+colorInput.oninput = () => {
+	UIController._lineColor = colorInput.value;
+}

@@ -1,4 +1,4 @@
-import {StateHandler} from './variables';
+import {StateHandler} from './StateHandler';
 
 
 var canvasWidth = document.getElementById('canvasWidth'),
