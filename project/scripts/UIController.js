@@ -1,13 +1,13 @@
 import {StateHandler} from './StateHandler';
-import {Canvas} from './Canvas';
+import {canvas1} from './Canvas';
 
 // creating parent class
 export var UIController = new class {
 	constructor() {
 		this._lineWidth = 1;
 		this._lineColor = "#000";
-		this._canvasWidth = Canvas._wrap.width;
-		this._canvasHeight = Canvas._wrap.height;
+		this._canvasWidth = canvas1._wrap.width;
+		this._canvasHeight = canvas1._wrap.height;
 	}
 }
 
@@ -52,8 +52,8 @@ canvasWidth.value = UIController._canvasWidth;
 
 widthBtn.onclick = () => {
 	UIController._canvasWidth = canvasWidth.value;
-	Canvas._wrap.width = UIController._canvasWidth;
-	Canvas._element.putImageData(StateHandler._currentImgSet[StateHandler._setCounter], 0, 0);
+	canvas1._wrap.width = UIController._canvasWidth;
+	canvas1._element.putImageData(StateHandler._currentImgSet[StateHandler._setCounter], 0, 0);
 }
 
 
@@ -65,6 +65,6 @@ canvasHeight.value = UIController._canvasHeight;
 
 heightBtn.onclick = () => {
 	UIController._canvasHeight = canvasHeight.value;
-	Canvas._wrap.height = UIController._canvasHeight;
-	Canvas._element.putImageData(StateHandler._currentImgSet[StateHandler._setCounter], 0, 0);
+	canvas1._wrap.height = UIController._canvasHeight;
+	canvas1._element.putImageData(StateHandler._currentImgSet[StateHandler._setCounter], 0, 0);
 }

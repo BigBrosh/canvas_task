@@ -1,4 +1,4 @@
-import {Canvas} from './Canvas';
+import {canvas1} from './Canvas';
 
 export var StateHandler = new class {
 	constructor() {
@@ -27,7 +27,7 @@ var nextBtn = document.getElementById('nextBtn');
 nextBtn.onclick = () => {
 	if(StateHandler._setCounter != StateHandler._currentImgSet.length - 1) {
 		StateHandler.increaseSetCounter();
-		Canvas._element.putImageData(StateHandler._currentImgSet[StateHandler._setCounter], 0, 0);
+		canvas1._element.putImageData(StateHandler._currentImgSet[StateHandler._setCounter], 0, 0);
 	}
 }
 
@@ -37,13 +37,13 @@ var prevBtn = document.getElementById('prevBtn');
 
 prevBtn.onclick = () => {
 	if (StateHandler._setCounter <= 0) {
-		Canvas._element.clearRect(0, 0, Canvas._wrap.width, Canvas._wrap.height);
+		canvas1._element.clearRect(0, 0, canvas1._wrap.width, canvas1._wrap.height);
 		StateHandler.reset();
 	}
 
 	else {
 		StateHandler.decreaseSetCounter();
-		Canvas._element.putImageData(StateHandler._currentImgSet[StateHandler._setCounter], 0, 0);
+		canvas1._element.putImageData(StateHandler._currentImgSet[StateHandler._setCounter], 0, 0);
 	}
 }
 
@@ -52,7 +52,7 @@ prevBtn.onclick = () => {
 var clearBtn = document.getElementById('clear');
 
 clearBtn.onclick = () => {
-	Canvas._element.clearRect(0, 0, Canvas._wrap.width, Canvas._wrap.height);
+	canvas1._element.clearRect(0, 0, canvas1._wrap.width, canvas1._wrap.height);
 	StateHandler._currentImgSet = [];
 	StateHandler.reset();
 }
@@ -62,6 +62,6 @@ clearBtn.onclick = () => {
 var saveBtn = document.getElementById('save');
 
 saveBtn.onclick = () => {
-	saveBtn.href = Canvas._wrap.toDataURL();
-	saveBtn.download = "canvaspainting.png";
+	saveBtn.href = canvas1._wrap.toDataURL();
+	saveBtn.download = "canvas1painting.png";
 }
