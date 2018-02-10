@@ -28,7 +28,7 @@ export var UIController = function(canvasWrap, parent) {
 	self._canvasWidthInput.value = self._canvasWidth;
 	self._canvasHeightInput.value = self._canvasHeight;
 
-	//event listeners
+	// extra functions
 	function wrapClassName(name) {
 		return document.querySelector(parent + ' .' + name);
 	}
@@ -39,20 +39,21 @@ export var UIController = function(canvasWrap, parent) {
 		}
 	}
 
-	self._inputRange.oninput = () => {
-		self._inputField = self._inputRange;
-		self._lineWidth = self._inputRange;
+	//event listeners
+	self._inputRange.oninput = function() {
+		self._inputField.value = self._inputRange.value;
+		self._lineWidth = self._inputRange.value;
 	}
 
 	self._inputField.oninput = () => {
 		if (self._inputField.value > 10)
-			self._inputField = 10;
+			self._inputField.value = 10;
 
 		else if (self._inputField.value < 1)
-			self._inputField = 1;
+			self._inputField.value = 1;
 
-		self._inputRange = self._inputField;
-		self._lineWidth = self._inputField;
+		self._inputRange.value = self._inputField.value;
+		self._lineWidth = self._inputFieldvalue;
 	}
 
 	self._inputColor.oninput = () => {
@@ -60,13 +61,13 @@ export var UIController = function(canvasWrap, parent) {
 	}
 
 	self._canvasWidthButton.onclick = () => {
-		self._canvasWidth = self._canvasWidthInput.value;
+		canvasWrap.width = self._canvasWidthInput.value;
 		document.querySelector(parent).width = self._canvasWidth;
 		// add putImageData!
 	}
 
 	self._canvasHeightButton.onclick = () => {
-		self._canvasHeight = self._canvasHeightInput.value;
+		canvasWrap.height = self._canvasHeightInput.value;
 		// add putImageData!
 	}
 }
