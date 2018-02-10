@@ -1,4 +1,4 @@
-#canvas_wrap {
+.canvas_wrap {
   border: 1px solid blue;
 }
 
@@ -58,7 +58,7 @@ table td > * {
   margin-bottom: 30px;
 }
 
-#canvas_wrap, .state_buttons, .buttons_wrap {
+.canvas_wrap, .state_buttons, .buttons_wrap {
   align-self: center;
 }
 

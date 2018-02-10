@@ -2,14 +2,36 @@ import {StateHandler} from './StateHandler';
 import {canvas1} from './Canvas';
 
 // creating parent class
-export var UIController = new class {
-	constructor() {
-		this._lineWidth = 1;
-		this._lineColor = "#000";
-		this._canvasWidth = canvas1._wrap.width;
-		this._canvasHeight = canvas1._wrap.height;
+export var UIController = function(wrap, parent) {
+	var self = this;
+
+	self._wrap = wrapClassName(wrap);
+	self._inputRange = wrapClassName('lineWidthR');
+	self._inputField = wrapClassName('lineWidthI');
+
+	self._canvasWidth = parent._width;
+	self._canvasHeight = parent._height;
+	self._lineWidth = 1;
+	self._lineColor = "#000";
+
+	function wrapClassName(name) {
+		return document.querySelectorAll(parent + ' .' + name);
+	}
+
+	function addEventListenerList(list, event, fn) {
+		for (var i = 0, len = list.length; i < len; i++) {
+			list[i].addEventListener(event, fn, false);
+		}
 	}
 }
+// export var UIController = new class {
+// 	constructor() {
+// 		this._lineWidth = 1;
+// 		this._lineColor = "#000";
+// 		this._canvasWidth = canvas1._wrap.width;
+// 		this._canvasHeight = canvas1._wrap.height;
+// 	}
+// }
 
 
 // line Width

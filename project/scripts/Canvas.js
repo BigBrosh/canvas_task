@@ -1,27 +1,26 @@
-import {counter} from './Counter.js'
-import {Handler} from './Handler.js'
+import {Counter} from './Counter.js'
+import {StateHandler} from './StateHandler.js'
+import {Drawing} from './drawLine.js'
 
 var Canvas = function (wrapp) {
-	counter.increase();
+	Counter.increase();
 	
 	var self = this;
-	self._wrap = document.getElementById(wrapp);
+	self._wrap = document.getElementsByClassName(wrapp)[0];
 	self._element = self._wrap.getContext('2d');
-	self._number = counter._amount;
-	self._ident = wrapp + counter._amount;
+	self._setCounter = self._wrap + 'SetCounter';
 
-	Handler.add(self._ident);
+	StateHandler[self._wrap] = [];
+	StateHandler[self._setCounter] = -1;
 
-	self._wrap.onclick = function() {
-		console.log(self._ident);
-		console.log(Handler._array[self._number - 1]);
-		
-		Handler._array.map(function(el, index) {
-			if (el.name == self._ident) {
-				console.log(index);
-			}
-		});
+
+	self._wrap.onclick = (e) => {
+		Drawing.beginDraw(e, self._element, self._wrap);
+
+		this.onmouseup = (e) => {
+			Drawing.endDraw(e, self._element, self._wrap);
+		}
 	}
 }
 
-export var canvas1 = new Canvas('canvas_wrap');
+var canvas1 = new Canvas('.canvas_wrap .first');

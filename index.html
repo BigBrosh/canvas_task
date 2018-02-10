@@ -7,41 +7,41 @@
 </head>
 <body>
 	<div class="main_wrapp">
-		<canvas id='canvas_wrap' width="320" height="320">Canvas isn't supported by your browser</canvas>
+		<canvas class="canvas_wrap first" width="320" height="320">Canvas isn't supported by your browser</canvas>
 
 		<div class="state_buttons">
-			<button id="prevBtn">prev</button>
-			<button id="nextBtn">next</button>
+			<button class="prevBtn">prev</button>
+			<button class="nextBtn">next</button>
 		</div>
 		
 		<table>
 			<tr class="line_width">
-				<td><label for="lineWidthI">Line width: </label></td>
-				<td><input type="text" name="" id="lineWidthI">
-				<input type="range" name="" id="lineWidthR" min="1" max="10"></td>
+				<td>Line width: </td>
+				<td><input type="text" name="" class="lineWidthI">
+				<input type="range" name="" class="lineWidthR" min="1" max="10"></td>
 			</tr>
 
 			<tr class="color_wrap">
-				<td><label for="colorChange">Line color: </label></td>
-				<td><input type="color" id="colorChange"></td>
+				<td>Line color: </td>
+				<td><input type="color" class="colorChange"></td>
 			</tr>
 
 			<tr class="canvasWidthWrap">
-				<td><label for="canvasWidth">Canvas width: </label></td>
-				<td><input type="text" id="canvasWidth">
-				<button id="applyWidth">Apply</button></td>
+				<td>Canvas width: </td>
+				<td><input type="text" class="canvasWidth">
+				<button class="applyWidth">Apply</button></td>
 			</tr>
 
 			<tr class="canvasHeightWrap">
-				<td><label for="canvasHeight">Canvas height: </label></td>
-				<td><input type="text" id="canvasHeight">
-				<button id="applyHeight">Apply</button></td>
+				<td>Canvas height: </td>
+				<td><input type="text" class="canvasHeight">
+				<button class="applyHeight">Apply</button></td>
 			</tr>
 	  	</table>
 			
 		<div class="buttons_wrap">
-			<button id="clear">Clear canvas</button>
-			<a id="save"><button>Save image</button></a>
+			<button class="clear">Clear canvas</button>
+			<a class="save"><button>Save image</button></a>
 		</div>
 	</div>
 	<script src="dist/js/compiled.js"></script>
