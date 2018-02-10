@@ -1,5 +1,5 @@
-import {StateHandler} from './StateHandler';
-import {UIController} from './UIController';
+// import {StateHandler} from './StateHandler';
+// import {UIController} from './UIController';
 
 export var Drawing = new class {
 	beginDraw(e, element, wrap) {

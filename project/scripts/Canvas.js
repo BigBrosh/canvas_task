@@ -1,26 +1,27 @@
-import {Counter} from './Counter.js'
-import {StateHandler} from './StateHandler.js'
-import {Drawing} from './drawLine.js'
+// import {StateHandler} from './StateHandler.js'
+// import {Drawing} from './drawLine.js'
+import {UIController} from './UIController.js'
 
-var Canvas = function (wrapp) {
-	Counter.increase();
-	
-	var self = this;
-	self._wrap = document.getElementsByClassName(wrapp)[0];
+var Canvas = function (wrap) {	
+	let self = this;
+
+	self._wrap = document.getElementsByClassName(wrap)[0];
 	self._element = self._wrap.getContext('2d');
 	self._setCounter = self._wrap + 'SetCounter';
 
-	StateHandler[self._wrap] = [];
-	StateHandler[self._setCounter] = -1;
+	let controller = new UIController(wrap);
+
+	// StateHandler[wrap] = [];
+	// StateHandler[self._setCounter] = -1;
 
 
-	self._wrap.onclick = (e) => {
-		Drawing.beginDraw(e, self._element, self._wrap);
+	// self._wrap.onclick = (e) => {
+	// 	Drawing.beginDraw(e, self._element, self._wrap);
 
-		this.onmouseup = (e) => {
-			Drawing.endDraw(e, self._element, self._wrap);
-		}
-	}
+	// 	this.onmouseup = (e) => {
+	// 		Drawing.endDraw(e, self._element, self._wrap);
+	// 	}
+	// }
 }
 
 var canvas1 = new Canvas('.canvas_wrap .first');

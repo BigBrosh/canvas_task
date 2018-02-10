@@ -1,4 +1,4 @@
-import {canvas1} from './Canvas';
+// import {canvas1} from './Canvas';
 
 export var StateHandler = new class {
 	increaseSetCounter() {
