@@ -1,8 +1,8 @@
-import {StateHandler} from './StateHandler';
+// import {StateHandler} from './StateHandler';
 // import * from './Canvas';
 
 // creating parent class
-export var UIController = function(parent) {
+export var UIController = function(canvasWrap, parent) {
 	let self = this;
 
 	// inputs
@@ -13,8 +13,8 @@ export var UIController = function(parent) {
 	self._canvasHeightInput = wrapClassName('canvasHeight');
 
 	// parametrs
-	self._canvasWidth = parent._width;
-	self._canvasHeight = parent._height;
+	self._canvasWidth = canvasWrap.width;
+	self._canvasHeight = canvasWrap.height;
 	self._lineWidth = 1;
 	self._lineColor = "#000";
 
@@ -30,7 +30,7 @@ export var UIController = function(parent) {
 
 	//event listeners
 	function wrapClassName(name) {
-		return document.querySelectorAll(parent + ' .' + name);
+		return document.querySelector(parent + ' .' + name);
 	}
 
 	function addEventListenerList(list, event, fn) {

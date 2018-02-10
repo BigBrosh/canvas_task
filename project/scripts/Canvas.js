@@ -2,14 +2,14 @@
 // import {Drawing} from './drawLine.js'
 import {UIController} from './UIController.js'
 
-var Canvas = function (wrap) {	
+var Canvas = function (canvasWrap, wrap) {	
 	let self = this;
 
-	self._wrap = document.getElementsByClassName(wrap)[0];
-	self._element = self._wrap.getContext('2d');
+	self._canvasWrap = document.querySelector(canvasWrap);
+	self._element = self._canvasWrap.getContext('2d');
 	self._setCounter = self._wrap + 'SetCounter';
 
-	let controller = new UIController(wrap);
+	var controller = new UIController(self._canvasWrap, wrap);
 
 	// StateHandler[wrap] = [];
 	// StateHandler[self._setCounter] = -1;
@@ -24,4 +24,4 @@ var Canvas = function (wrap) {
 	// }
 }
 
-var canvas1 = new Canvas('.canvas_wrap .first');
+var canvas1 = new Canvas('.canvas_wrap.first', '.main_wrapp');
