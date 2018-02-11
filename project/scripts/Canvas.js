@@ -10,32 +10,41 @@ var Canvas = function (wrap, device = 'mouse') {
 	self._element = self._canvasWrap.getContext('2d');
 
 	// define new objects
-	self._drawing = new Drawing();
 	self._frameHandler = new FrameHandler(self._canvasWrap, self._element, wrap);
 	self._controller = new UIController(self._canvasWrap, self._element, wrap, self._frameHandler);
+	self._drawing = new Drawing(self._element, self._canvasWrap, self._controller, self._frameHandler, device);
 
 	// set event list
 	switch (device) {
-		case "mouse":
-			self._eventList = ["mousedown", "mouseup"];
+		case 'mouse':
+			self._eventList = ['mousedown', 'mouseup'];
 			break;
 
-		case "screen":
-			self._eventList = ["touchstart", "touchend"];
+		case 'screen':
+			self._eventList = ['touchstart', 'touchend'];
 			break;
 
-		case "keyboard":
-			self._eventList = ["keydown", "keyup"];
+		case 'keyboard':
+			self._eventList = ['keydown', 'keyup'];
 			break;
 
 		default: return false;
 	}
 
 	// add drawing feature
-	self._canvasWrap.addEventListener(self._eventList[0], function(e) {self._drawing._beginDraw(e, self._element, self._canvasWrap, self._controller, self._frameHandler, device)}, false);
-	self._canvasWrap.addEventListener(self._eventList[1], function(e) {self._drawing._endDraw(e, self._element, self._canvasWrap, self._controller, self._frameHandler, device)}, false);
+	if (device == 'keyboard')
+	{
+		addEventListener(self._eventList[0], function(e) {self._drawing._beginDraw(e)}, false);
+		addEventListener(self._eventList[1], function(e) {self._drawing._endDraw(e)}, false);	
+	}
+
+	else
+	{
+		self._canvasWrap.addEventListener(self._eventList[0], function(e) {self._drawing._beginDraw(e)}, false);
+		self._canvasWrap.addEventListener(self._eventList[1], function(e) {self._drawing._endDraw(e)}, false);
+	}
 }
 
 var canvas1 = new Canvas('.main_wrapp.first');
 var canvas2 = new Canvas('.main_wrapp.second', 'screen');
-var canvas3 = new Canvas('.main_wrapp.third');
+var canvas3 = new Canvas('.main_wrapp.third', 'keyboard');

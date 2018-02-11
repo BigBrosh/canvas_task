@@ -1,10 +1,10 @@
-export var Drawing = function() {
+export var Drawing = function(element, wrap, controller, frameHandler, device) {
 	let self = this;
 
 	self._xCoordinate = 0;
 	self._yCoordinate = 0;
 
-	self._beginDraw = function (e, element, wrap, controller, frameHandler, device) {
+	self._beginDraw = function (e) {
 		// begin coordinates
 		switch (device) {
 			case 'mouse':
@@ -23,14 +23,33 @@ export var Drawing = function() {
 				var xBegin = self._xCoordinate,
 					yBegin = self._yCoordinate;
 
+				break;
+
 			default: return false;
 		}
-	  
+		
 		element.beginPath();
 		element.moveTo(xBegin, yBegin);
+
+
+ 		if (e.keyCode == 37){
+			self._xCoordinate -= 4;
+ 		}
+
+		else if (e.keyCode == 38){
+			self._yCoordinate -= 4;
+		}
+
+		else if (e.keyCode == 39){
+			self._xCoordinate += 4;
+		}
+
+		else if (e.keyCode == 40){
+			self._yCoordinate += 4;
+		}
 	}
 
-	self._endDraw = function (e, element, wrap, controller, frameHandler, device) {
+	self._endDraw = function (e) {
 		// end coordinates
 		switch (device) {
 			case 'mouse':
@@ -48,6 +67,7 @@ export var Drawing = function() {
 			case 'keyboard':
 				var xEnd = self._xCoordinate,
 					yEnd = self._yCoordinate;
+				break;
 
 			default: return false;
 		}
