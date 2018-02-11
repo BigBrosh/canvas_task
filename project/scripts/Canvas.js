@@ -8,11 +8,11 @@ var Canvas = function (canvasWrap, wrap) {
 	self._canvasWrap = document.querySelector(canvasWrap);
 	self._element = self._canvasWrap.getContext('2d');
 
-	self._controller = new UIController(self._canvasWrap, self._element, wrap, self._frameHandler);
 	self._frameHandler = new FrameHandler(self._canvasWrap, self._element, wrap);
+	self._controller = new UIController(self._canvasWrap, self._element, wrap, self._frameHandler);
 
 
-	self._canvasWrap.onclick = (e) => {
+	self._canvasWrap.onmousedown = (e) => {
 		Drawing.beginDraw(e, self._element, self._canvasWrap, self._controller, self._frameHandler);
 
 		self._canvasWrap.onmouseup = (e) => {
