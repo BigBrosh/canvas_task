@@ -5,17 +5,29 @@ import {UIController} from './UIController.js'
 var Canvas = function (wrap, device = 'mouse') {	
 	let self = this;
 
+	// wrap
 	self._canvasWrap = document.querySelector(wrap + ' .canvas_wrap');
 	self._element = self._canvasWrap.getContext('2d');
 
+	// define new objects
 	self._frameHandler = new FrameHandler(self._canvasWrap, self._element, wrap);
 	self._controller = new UIController(self._canvasWrap, self._element, wrap, self._frameHandler);
 
+	// set event list
+	switch (device) {
+		case "mouse":
+			self._eventList = ["mousedown", "mouseup"];
+			break;
 
-	self._iventList = device == "mouse" ? ["mousedown", "mouseup"] : device == "screen" ? ["touchstart", "touchend"] : [];
+		case "screen":
+			self._eventList = ["touchstart", "touchend"];
+			break;
 
-	self._canvasWrap.addEventListener(self._iventList[0], function(e) {Drawing.beginDraw(e, self._element, self._canvasWrap, self._controller, self._frameHandler, device)}, false);
-	self._canvasWrap.addEventListener(self._iventList[1], function(e) {Drawing.endDraw(e, self._element, self._canvasWrap, self._controller, self._frameHandler, device)}, false);
+		default: return false;
+	}
+
+	self._canvasWrap.addEventListener(self._eventList[0], function(e) {Drawing.beginDraw(e, self._element, self._canvasWrap, self._controller, self._frameHandler, device)}, false);
+	self._canvasWrap.addEventListener(self._eventList[1], function(e) {Drawing.endDraw(e, self._element, self._canvasWrap, self._controller, self._frameHandler, device)}, false);
 }
 
 var canvas1 = new Canvas('.main_wrapp.first');
