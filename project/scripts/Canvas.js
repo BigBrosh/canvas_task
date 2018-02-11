@@ -12,22 +12,10 @@ var Canvas = function (wrap, device = 'mouse') {
 	self._controller = new UIController(self._canvasWrap, self._element, wrap, self._frameHandler);
 
 
-	if (device == 'mouse') 
-	{
-		self._canvasWrap.onmousedown = (e) => {
-			Drawing.beginDraw(e, self._element, self._canvasWrap, self._controller, self._frameHandler);
+	self._iventList = device == "mouse" ? ["mousedown", "mouseup"] : device == "screen" ? ["touchstart", "touchend"] : [];
 
-			self._canvasWrap.onmouseup = (e) => {
-				Drawing.endDraw(e, self._element, self._canvasWrap, self._controller, self._frameHandler);
-			}
-		}
-	}
-
-	else if (device == 'screen') 
-	{
-		self._canvasWrap.addEventListener('touchstart', function(e) {Drawing.beginDraw(e, self._element, self._canvasWrap, self._controller, self._frameHandler)}, false);
-		self._canvasWrap.addEventListener('touchend', function(e) {Drawing.endDraw(e, self._element, self._canvasWrap, self._controller, self._frameHandler)}, false);
-	}
+	self._canvasWrap.addEventListener(self._iventList[0], function(e) {Drawing.beginDraw(e, self._element, self._canvasWrap, self._controller, self._frameHandler)}, false);
+	self._canvasWrap.addEventListener(self._iventList[1], function(e) {Drawing.endDraw(e, self._element, self._canvasWrap, self._controller, self._frameHandler)}, false);
 }
 
 var canvas1 = new Canvas('.main_wrapp.first');
