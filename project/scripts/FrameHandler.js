@@ -1,5 +1,5 @@
 export var FrameHandler = function(wrap, element, parent) {
-	var self = this;
+	let self = this;
 
 	// wrap
 	self._wrap = wrap;

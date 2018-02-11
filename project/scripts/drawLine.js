@@ -1,5 +1,10 @@
-export var Drawing = new class {
-	beginDraw(e, element, wrap, controller, frameHandler, device) {
+export var Drawing = function() {
+	let self = this;
+
+	self._xCoordinate = 0;
+	self._yCoordinate = 0;
+
+	self._beginDraw = function (e, element, wrap, controller, frameHandler, device) {
 		// begin coordinates
 		switch (device) {
 			case 'mouse':
@@ -15,8 +20,8 @@ export var Drawing = new class {
 				break;
 
 			case 'keyboard':
-				var xBegin = 0,
-					yBegin = 0;
+				var xBegin = self._xCoordinate,
+					yBegin = self._yCoordinate;
 
 			default: return false;
 		}
@@ -25,7 +30,7 @@ export var Drawing = new class {
 		element.moveTo(xBegin, yBegin);
 	}
 
-	endDraw(e, element, wrap, controller, frameHandler, device) {
+	self._endDraw = function (e, element, wrap, controller, frameHandler, device) {
 		// end coordinates
 		switch (device) {
 			case 'mouse':
@@ -41,8 +46,8 @@ export var Drawing = new class {
 				break;
 
 			case 'keyboard':
-				var xEnd = 0,
-					yEnd = 0;
+				var xEnd = self._xCoordinate,
+					yEnd = self._yCoordinate;
 
 			default: return false;
 		}
