@@ -1,15 +1,17 @@
 export var Drawing = new class {
-	beginDraw(e, element, wrap, controller, frameHandler) {
-		var xBegin = e.offsetX,
-			yBegin = e.offsetY;
+	beginDraw(e, element, wrap, controller, frameHandler, device) {
+		var xBegin = device == 'mouse' ? e.offsetX : device == 'screen' ? e.targetTouches[0].pageX - e.target.offsetLeft : '',
+			yBegin = device == 'mouse' ? e.offsetY : device == 'screen' ? e.targetTouches[0].pageY - e.target.offsetTop : '';
 	  
 		element.beginPath();
 		element.moveTo(xBegin, yBegin);
+
+		console.log(xBegin, yBegin);
 	}
 
-	endDraw(e, element, wrap, controller, frameHandler) {
-		var xEnd = e.offsetX,
-			yEnd = e.offsetY;
+	endDraw(e, element, wrap, controller, frameHandler, device) {
+		var xEnd = device == 'mouse' ? e.offsetX : device == 'screen' ? e.changedTouches[0].pageX - e.target.offsetLeft : '',
+			yEnd = device == 'mouse' ? e.offsetY : device == 'screen' ? e.changedTouches[0].pageY - e.target.offsetTop : '';
 
 		element.lineTo(xEnd, yEnd);
 		element.closePath();
@@ -17,6 +19,7 @@ export var Drawing = new class {
 		element.strokeStyle = controller._lineColor;
 		element.lineWidth = controller._lineWidth;
 		element.stroke();
+		console.log(xEnd, yEnd);
 
 		while(frameHandler._frameCounter > frameHandler._frames.length - 1){
 			frameHandler._frames.pop();
