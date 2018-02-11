@@ -1,3 +1,12 @@
+body {
+  font-family: 'Arial', sans-serif;
+  overflow-x: hidden;
+}
+
+body.active {
+  overflow-y: hidden;
+}
+
 .canvas_wrap {
   border: 1px solid blue;
 }
@@ -25,6 +34,7 @@ table td > * {
 
 .main_wrapp input {
   padding: 3px;
+  border: 1px solid rgba(0, 0, 0, .6);
 }
 
 .main_wrapp input[type='range'] {
@@ -64,4 +74,17 @@ table td > * {
 
 .buttons_wrap {
   margin-top: 15px;
+}
+
+@media screen and (max-width: 480px) {
+  .main_wrapp {
+    padding: 10px;
+  }
+  .main_wrapp input{
+    max-width: 70px;
+  }
+  table td {
+    padding: 4px 0;
+    min-width: 120px;
+  }
 }

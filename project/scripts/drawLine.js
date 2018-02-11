@@ -6,7 +6,7 @@ export var Drawing = new class {
 		element.beginPath();
 		element.moveTo(xBegin, yBegin);
 
-		device == 'screen' ? wrap.addEventListener('touchmove', function() { document.body.style.overflowY = 'hidden'}, false) : '';
+		device == 'screen' ? wrap.addEventListener('touchmove', function() {document.body.classList.add('active');}, false) : '';
 	}
 
 	endDraw(e, element, wrap, controller, frameHandler, device) {
@@ -27,6 +27,6 @@ export var Drawing = new class {
 		frameHandler._frameCounter++;
 		frameHandler._frames.push(element.getImageData(0, 0, wrap.width, wrap.height));
 
-		device == 'screen' ? document.addEventListener('touchend', function() { document.body.style.overflowY = 'auto'}, false) : '';
+		device == 'screen' ? document.addEventListener('touchend', function() {document.body.classList.remove('active');}, false) : '';
 	}
 }
