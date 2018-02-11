@@ -1,17 +1,51 @@
 export var Drawing = new class {
 	beginDraw(e, element, wrap, controller, frameHandler, device) {
-		var xBegin = device == 'mouse' ? e.offsetX : device == 'screen' ? e.targetTouches[0].pageX - e.target.offsetLeft : '',
-			yBegin = device == 'mouse' ? e.offsetY :device == 'screen' ? e.targetTouches[0].pageY - e.target.offsetTop : '';
+		// begin coordinates
+		switch (device) {
+			case 'mouse':
+				var xBegin = e.offsetX,
+					yBegin = e.offsetY;
+				break;
+
+			case 'screen':
+				var xBegin = e.targetTouches[0].pageX - e.target.offsetLeft,
+					yBegin = e.targetTouches[0].pageY - e.target.offsetTop;
+
+				wrap.addEventListener('touchmove', function() {document.body.classList.add('active');}, false);
+				break;
+
+			case 'keyboard':
+				var xBegin = 0,
+					yBegin = 0;
+
+			default: return false;
+		}
 	  
 		element.beginPath();
 		element.moveTo(xBegin, yBegin);
-
-		device == 'screen' ? wrap.addEventListener('touchmove', function() {document.body.classList.add('active');}, false) : '';
 	}
 
 	endDraw(e, element, wrap, controller, frameHandler, device) {
-		var xEnd = device == 'mouse' ? e.offsetX : device == 'screen' ? e.changedTouches[0].pageX - e.target.offsetLeft : '',
-			yEnd = device == 'mouse' ? e.offsetY : device == 'screen' ? e.changedTouches[0].pageY - e.target.offsetTop : '';
+		// end coordinates
+		switch (device) {
+			case 'mouse':
+				var xEnd = e.offsetX,
+					yEnd = e.offsetY;
+				break;
+
+			case 'screen':
+				var xEnd = e.changedTouches[0].pageX - e.target.offsetLeft,
+					yEnd = e.changedTouches[0].pageY - e.target.offsetTop;
+
+				document.addEventListener('touchend', function() {document.body.classList.remove('active');}, false);
+				break;
+
+			case 'keyboard':
+				var xEnd = 0,
+					yEnd = 0;
+
+			default: return false;
+		}
 
 		element.lineTo(xEnd, yEnd);
 		element.closePath();
@@ -26,7 +60,5 @@ export var Drawing = new class {
 
 		frameHandler._frameCounter++;
 		frameHandler._frames.push(element.getImageData(0, 0, wrap.width, wrap.height));
-
-		device == 'screen' ? document.addEventListener('touchend', function() {document.body.classList.remove('active');}, false) : '';
 	}
 }

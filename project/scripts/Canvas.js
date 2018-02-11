@@ -23,9 +23,14 @@ var Canvas = function (wrap, device = 'mouse') {
 			self._eventList = ["touchstart", "touchend"];
 			break;
 
+		case "keyboard":
+			self._eventList = [];
+			break;
+
 		default: return false;
 	}
 
+	// add drawing feature
 	self._canvasWrap.addEventListener(self._eventList[0], function(e) {Drawing.beginDraw(e, self._element, self._canvasWrap, self._controller, self._frameHandler, device)}, false);
 	self._canvasWrap.addEventListener(self._eventList[1], function(e) {Drawing.endDraw(e, self._element, self._canvasWrap, self._controller, self._frameHandler, device)}, false);
 }
