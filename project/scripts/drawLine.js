@@ -1,12 +1,12 @@
 export var Drawing = new class {
 	beginDraw(e, element, wrap, controller, frameHandler, device) {
 		var xBegin = device == 'mouse' ? e.offsetX : device == 'screen' ? e.targetTouches[0].pageX - e.target.offsetLeft : '',
-			yBegin = device == 'mouse' ? e.offsetY : device == 'screen' ? e.targetTouches[0].pageY - e.target.offsetTop : '';
+			yBegin = device == 'mouse' ? e.offsetY :device == 'screen' ? e.targetTouches[0].pageY - e.target.offsetTop : '';
 	  
 		element.beginPath();
 		element.moveTo(xBegin, yBegin);
 
-		console.log(xBegin, yBegin);
+		device == 'screen' ? wrap.addEventListener('touchmove', function() { document.body.style.overflowY = 'hidden'}, false) : '';
 	}
 
 	endDraw(e, element, wrap, controller, frameHandler, device) {
@@ -19,7 +19,6 @@ export var Drawing = new class {
 		element.strokeStyle = controller._lineColor;
 		element.lineWidth = controller._lineWidth;
 		element.stroke();
-		console.log(xEnd, yEnd);
 
 		while(frameHandler._frameCounter > frameHandler._frames.length - 1){
 			frameHandler._frames.pop();
@@ -27,5 +26,7 @@ export var Drawing = new class {
 
 		frameHandler._frameCounter++;
 		frameHandler._frames.push(element.getImageData(0, 0, wrap.width, wrap.height));
+
+		device == 'screen' ? document.addEventListener('touchend', function() { document.body.style.overflowY = 'auto'}, false) : '';
 	}
 }
