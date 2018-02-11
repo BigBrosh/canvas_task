@@ -1,8 +1,4 @@
-// import {StateHandler} from './StateHandler';
-// import * from './Canvas';
-
-// creating parent class
-export var UIController = function(canvasWrap, parent) {
+export var UIController = function(canvasWrap, element, parent, frameHandler) {
 	let self = this;
 
 	// inputs
@@ -33,12 +29,6 @@ export var UIController = function(canvasWrap, parent) {
 		return document.querySelector(parent + ' .' + name);
 	}
 
-	function addEventListenerList(list, event, fn) {
-		for (var i = 0, len = list.length; i < len; i++) {
-			list[i].addEventListener(event, fn, false);
-		}
-	}
-
 	//event listeners
 	self._inputRange.oninput = function() {
 		self._inputField.value = self._inputRange.value;
@@ -63,36 +53,11 @@ export var UIController = function(canvasWrap, parent) {
 	self._canvasWidthButton.onclick = () => {
 		canvasWrap.width = self._canvasWidthInput.value;
 		document.querySelector(parent).width = self._canvasWidth;
-		// add putImageData!
+		element.putImageData(frameHandler._frames[frameHandler._frameCounter], 0, 0);
 	}
 
 	self._canvasHeightButton.onclick = () => {
 		canvasWrap.height = self._canvasHeightInput.value;
-		// add putImageData!
+		element.putImageData(frameHandler._frames[frameHandler._frameCounter], 0, 0);
 	}
 }
-
-// canvas Width
-// var canvasWidth = document.getElementById('canvasWidth'),
-// 	widthBtn = document.getElementById('applyWidth');
-
-// canvasWidth.value = UIController._canvasWidth;
-
-// widthBtn.onclick = () => {
-// 	UIController._canvasWidth = canvasWidth.value;
-// 	canvas1._wrap.width = UIController._canvasWidth;
-// 	canvas1._element.putImageData(StateHandler._currentImgSet[StateHandler._setCounter], 0, 0);
-// }
-
-
-// canvas Height
-// var canvasHeight = document.getElementById('canvasHeight'),
-// 	heightBtn = document.getElementById('applyHeight');
-
-// canvasHeight.value = UIController._canvasHeight;
-
-// heightBtn.onclick = () => {
-// 	UIController._canvasHeight = canvasHeight.value;
-// 	canvas1._wrap.height = UIController._canvasHeight;
-// 	canvas1._element.putImageData(StateHandler._currentImgSet[StateHandler._setCounter], 0, 0);
-// }
