@@ -44,7 +44,7 @@ export var UIController = function(canvasWrap, element, parent, frameHandler) {
 			self._inputField.value = 1;
 
 		self._inputRange.value = self._inputField.value;
-		self._lineWidth = self._inputFieldvalue;
+		self._lineWidth = self._inputField.value;
 	}
 
 	self._inputColor.oninput = () => {
