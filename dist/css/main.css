@@ -7,6 +7,10 @@ body.active {
   overflow-y: hidden;
 }
 
+h2 {
+  margin: 0 auto;
+}
+
 .canvas_wrap {
   border: 1px solid blue;
 }
@@ -22,6 +26,22 @@ body.active {
 
 .main_wrapp > * {
   margin-bottom: 12px;
+}
+
+.main_wrapp table {
+  margin: 0 auto;
+}
+
+.main_wrapp .keyboardChecker_wrapp {
+  margin: 0 auto 15px;
+}
+
+.main_wrapp .keyboardChecker_wrapp > *{
+    vertical-align: bottom;
+}
+
+.keyboardChecker:checked ~ body{
+    background: red;
 }
 
 table td {

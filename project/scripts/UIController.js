@@ -7,6 +7,7 @@ export var UIController = function(canvasWrap, element, parent, frameHandler) {
 	self._inputColor = wrapClassName('colorChange');
 	self._canvasWidthInput = wrapClassName('canvasWidth');
 	self._canvasHeightInput = wrapClassName('canvasHeight');
+	self._keyboardChecker = wrapClassName('keyboardChecker');
 
 	// parametrs
 	self._canvasWidth = canvasWrap.width;
@@ -59,5 +60,14 @@ export var UIController = function(canvasWrap, element, parent, frameHandler) {
 	self._canvasHeightButton.onclick = () => {
 		canvasWrap.height = self._canvasHeightInput.value;
 		element.putImageData(frameHandler._frames[frameHandler._frameCounter], 0, 0);
+	}
+
+	if (self._keyboardChecker) {		
+		self._keyboardChecker.onclick = e => {
+			if (e.target.checked)
+				document.body.classList.add('active');
+			else
+				document.body.classList.remove('active');
+		}
 	}
 }
