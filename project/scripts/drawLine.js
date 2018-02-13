@@ -1,12 +1,19 @@
 export class Drawing {
 	constructor(element, wrap, controller, frameHandler, device) {
+		this._element = element;
+		this._wrap = wrap;
+		this._controller = controller;
+		this._frameHandler = frameHandler;
+		this._device = device;
+
 		this._xCoordinate = 0;
 		this._yCoordinate = 0;
 		this._keyboardChecker = true;
+	}
 
-		this._beginDraw = (e) => {
+	beginDraw(e) {
 			// begin coordinates
-			switch (device) {
+			switch (this._device) {
 				case 'mouse':
 					var xBegin = e.offsetX,
 						yBegin = e.offsetY;
@@ -16,7 +23,7 @@ export class Drawing {
 					var xBegin = e.targetTouches[0].pageX - e.target.offsetLeft,
 						yBegin = e.targetTouches[0].pageY - e.target.offsetTop;
 
-					wrap.addEventListener('touchmove', function() {document.body.classList.add('active');}, false);
+					this._wrap.addEventListener('touchmove', function() {document.body.classList.add('active');}, false);
 					break;
 
 				case 'keyboard':
@@ -27,8 +34,8 @@ export class Drawing {
 				default: return false;
 			}
 			
-			element.beginPath();
-			element.moveTo(xBegin, yBegin);
+			this._element.beginPath();
+			this._element.moveTo(xBegin, yBegin);
 
 
 	 		if (e.keyCode == 37)
@@ -55,7 +62,7 @@ export class Drawing {
 
 			else if (e.keyCode == 39)
 			{
-				if (this._xCoordinate == wrap.width)
+				if (this._xCoordinate == this._wrap.width)
 				{
 					this._keyboardChecker = false;
 					return false;
@@ -66,7 +73,7 @@ export class Drawing {
 
 			else if (e.keyCode == 40)
 			{
-				if (this._xCoordinate == wrap.height)
+				if (this._xCoordinate == this._wrap.height)
 				{
 					this._keyboardChecker = false;
 					return false;
@@ -76,9 +83,9 @@ export class Drawing {
 			}
 		}
 
-		this._endDraw = (e) => {
+		endDraw(e) {
 			// end coordinates
-			switch (device) {
+			switch (this._device) {
 				case 'mouse':
 					var xEnd = e.offsetX,
 						yEnd = e.offsetY;
@@ -101,22 +108,21 @@ export class Drawing {
 
 			if (this._keyboardChecker == true)
 			{			
-				element.lineTo(xEnd, yEnd);
-				element.closePath();
-				element.fill();
-				element.strokeStyle = controller._lineColor;
-				element.lineWidth = controller._lineWidth;
-				element.stroke();
+				this._element.lineTo(xEnd, yEnd);
+				this._element.closePath();
+				this._element.fill();
+				this._element.strokeStyle = this._controller._lineColor;
+				this._element.lineWidth = this._controller._lineWidth;
+				this._element.stroke();
 
-				while(frameHandler._frameCounter > frameHandler._frames.length - 1){
-					frameHandler._frames.pop();
+				while(this._frameHandler._frameCounter > this._frameHandler._frames.length - 1){
+					this._frameHandler._frames.pop();
 				}
 
-				frameHandler._frameCounter++;
-				frameHandler._frames.push(element.getImageData(0, 0, wrap.width, wrap.height));
+				this._frameHandler._frameCounter++;
+				this._frameHandler._frames.push(this._element.getImageData(0, 0, this._wrap.width, this._wrap.height));
 			}
 
 			this._keyboardChecker = true;
 		}
-	}
 }

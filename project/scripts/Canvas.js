@@ -33,14 +33,14 @@ class Canvas {
 		// add drawing feature
 		if (device == 'keyboard')
 		{
-			addEventListener(this._eventList[0], function(e) {this._drawing._beginDraw(e)}, false);
-			addEventListener(this._eventList[1], function(e) {this._drawing._endDraw(e)}, false);	
+			addEventListener(this._eventList[0], (e) => {this._drawing.beginDraw(e)}, false);
+			addEventListener(this._eventList[1], (e) => {this._drawing.endDraw(e)}, false);	
 		}
 
 		else
 		{
-			this._canvasWrap.addEventListener(this._eventList[0], function(e) {this._drawing._beginDraw(e)}, false);
-			this._canvasWrap.addEventListener(this._eventList[1], function(e) {this._drawing._endDraw(e)}, false);
+			this._canvasWrap.addEventListener(this._eventList[0], (e) => {this._drawing.beginDraw(e)}, false);
+			this._canvasWrap.addEventListener(this._eventList[1], (e) => {this._drawing.endDraw(e)}, false);
 		}
 	}
 }

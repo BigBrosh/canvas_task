@@ -50,7 +50,6 @@ export class UIController {
 	inputRangeListener() {
 		this._inputField.value = this._inputRange.value;
 		this._lineWidth = this._inputRange.value;
-		console.log(`${this._inputField.value} ${this._inputRange.value} ${this._lineWidth} ${this._lineColor} ${this._canvasWidth}`);
 	}
 
 	inputFieldListener() {
