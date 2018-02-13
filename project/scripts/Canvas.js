@@ -1,17 +1,19 @@
 import {FrameHandler} from './FrameHandler.js'
 import {Drawing} from './drawLine.js'
 import {UIController} from './UIController.js'
+import {UIController2} from './UIController2.js'
 
 class Canvas {	
 	constructor (wrap, device = 'mouse') {
 		// wrap
+		this._wrapName = wrap;
+		this._device = device;
 		this._canvasWrap = document.querySelector(wrap + ' .canvas_wrap');
 		this._element = this._canvasWrap.getContext('2d');
 
-		// define new objects
-		this._frameHandler = new FrameHandler(this._canvasWrap, this._element, wrap);
-		this._controller = new UIController(this._canvasWrap, this._element, wrap, this._frameHandler);
-		this._drawing = new Drawing(this._element, this._canvasWrap, this._controller, this._frameHandler, device);
+		this._frameHandler = new FrameHandler(this._canvasWrap, this._element, this._wrapName);
+		this._controller = new UIController(this._canvasWrap, this._element, this._wrapName, this._frameHandler);
+		this._drawing = new Drawing(this._canvasWrap, this._element, this._controller, this._frameHandler, this._device);
 
 		// set event list
 		switch (device) {
@@ -43,8 +45,25 @@ class Canvas {
 			this._canvasWrap.addEventListener(this._eventList[1], (e) => {this._drawing.endDraw(e)}, false);
 		}
 	}
+
+	setController(Parent) {
+		this._controller = new Parent(this._canvasWrap, this._element, this._wrapName, this._frameHandler);
+	}
+
+	setFrameHandler(Parent) {
+		this._frameHandler = new Parent(this._canvasWrap, this._element, this._wrapName);
+	}
+
+	setDrawing(Parent) {
+		this._drawing = new Parent(this._canvasWrap, this._element, this._controller, this._frameHandler, this._device);
+	}
 }
 
 var canvas1 = new Canvas('.main_wrapp.first');
+canvas1.setFrameHandler(FrameHandler);
+canvas1.setController(UIController2);
+canvas1.setDrawing(Drawing);
+
+
 var canvas2 = new Canvas('.main_wrapp.second', 'screen');
 var canvas3 = new Canvas('.main_wrapp.third', 'keyboard');

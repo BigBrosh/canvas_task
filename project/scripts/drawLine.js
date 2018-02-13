@@ -1,5 +1,5 @@
 export class Drawing {
-	constructor(element, wrap, controller, frameHandler, device) {
+	constructor(wrap, element, controller, frameHandler, device) {
 		this._element = element;
 		this._wrap = wrap;
 		this._controller = controller;
