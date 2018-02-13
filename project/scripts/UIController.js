@@ -1,73 +1,87 @@
-export var UIController = function(canvasWrap, element, parent, frameHandler) {
-	let self = this;
+export class UIController {
+	constructor (canvasWrap, element, parent, frameHandler) {
+		// inputs
+		this._inputRange = wrapClassName('lineWidthR');
+		this._inputField = wrapClassName('lineWidthI');
+		this._inputColor = wrapClassName('colorChange');
+		this._canvasWidthInput = wrapClassName('canvasWidth');
+		this._canvasHeightInput = wrapClassName('canvasHeight');
+		this._keyboardChecker = wrapClassName('keyboardChecker');
 
-	// inputs
-	self._inputRange = wrapClassName('lineWidthR');
-	self._inputField = wrapClassName('lineWidthI');
-	self._inputColor = wrapClassName('colorChange');
-	self._canvasWidthInput = wrapClassName('canvasWidth');
-	self._canvasHeightInput = wrapClassName('canvasHeight');
-	self._keyboardChecker = wrapClassName('keyboardChecker');
+		// parametrs
+		this._canvasWidth = canvasWrap.width;
+		this._canvasHeight = canvasWrap.height;
+		this._lineWidth = 1;
+		this._lineColor = "#000";
 
-	// parametrs
-	self._canvasWidth = canvasWrap.width;
-	self._canvasHeight = canvasWrap.height;
-	self._lineWidth = 1;
-	self._lineColor = "#000";
+		// buttons
+		this._canvasWidthButton = wrapClassName('applyWidth');
+		this._canvasHeightButton = wrapClassName('applyHeight');
 
-	// buttons
-	self._canvasWidthButton = wrapClassName('applyWidth');
-	self._canvasHeightButton = wrapClassName('applyHeight');
+		// set input's parametrs
+		this._inputRange.value = this._lineWidth;
+		this._inputField.value = this._lineWidth;
+		this._canvasWidthInput.value = this._canvasWidth;
+		this._canvasHeightInput.value = this._canvasHeight;
 
-	// set input's parametrs
-	self._inputRange.value = self._lineWidth;
-	self._inputField.value = self._lineWidth;
-	self._canvasWidthInput.value = self._canvasWidth;
-	self._canvasHeightInput.value = self._canvasHeight;
+		// extra functions
+		function wrapClassName(name) {
+			return document.querySelector(parent + ' .' + name);
+		}
 
-	// extra functions
-	function wrapClassName(name) {
-		return document.querySelector(parent + ' .' + name);
-	}
+		//event listeners
+		this._inputRangeListener = () => {
+			this._inputField.value = this._inputRange.value;
+			this._lineWidth = this._inputRange.value;
+			console.log(`${this._inputField.value} ${this._inputRange.value} ${this._lineWidth} ${this._lineColor} ${this._canvasWidth}`);
+		}
 
-	//event listeners
-	self._inputRange.oninput = function() {
-		self._inputField.value = self._inputRange.value;
-		self._lineWidth = self._inputRange.value;
-	}
+		this._inputFieldListener = () => {
+			if (this._inputField.value > 10)
+				this._inputField.value = 10;
 
-	self._inputField.oninput = () => {
-		if (self._inputField.value > 10)
-			self._inputField.value = 10;
+			else if (this._inputField.value < 1)
+				this._inputField.value = 1;
 
-		else if (self._inputField.value < 1)
-			self._inputField.value = 1;
+			this._inputRange.value = this._inputField.value;
+			this._lineWidth = this._inputField.value;
+		}
 
-		self._inputRange.value = self._inputField.value;
-		self._lineWidth = self._inputField.value;
-	}
+		this._inputColorListener = () => {
+			this._lineColor = this._inputColor.value;
+		}
 
-	self._inputColor.oninput = () => {
-		self._lineColor = self._inputColor.value;
-	}
+		this._keyboardCheckerListener = e => {
+			this._keyboardChecker.onclick = e => {
+				if (e.target.checked)
+					document.body.classList.add('active');
+				else
+					document.body.classList.remove('active');
+			}
+		}
 
-	self._canvasWidthButton.onclick = () => {
-		canvasWrap.width = self._canvasWidthInput.value;
-		document.querySelector(parent).width = self._canvasWidth;
-		element.putImageData(frameHandler._frames[frameHandler._frameCounter], 0, 0);
-	}
+		// button events
+		this._widthButtonEvent = () => {
+			canvasWrap.width = this._canvasWidthInput.value;
+			document.querySelector(parent).width = this._canvasWidth;
+			element.putImageData(frameHandler._frames[frameHandler._frameCounter], 0, 0);
+		}
 
-	self._canvasHeightButton.onclick = () => {
-		canvasWrap.height = self._canvasHeightInput.value;
-		element.putImageData(frameHandler._frames[frameHandler._frameCounter], 0, 0);
-	}
+		this._heightButtonEvent = () => {
+			canvasWrap.height = this._canvasHeightInput.value;
+			element.putImageData(frameHandler._frames[frameHandler._frameCounter], 0, 0);
+		}
 
-	if (self._keyboardChecker) {		
-		self._keyboardChecker.onclick = e => {
-			if (e.target.checked)
-				document.body.classList.add('active');
-			else
-				document.body.classList.remove('active');
+		// adding listeners
+		this._inputRange.addEventListener('input', this._inputRangeListener);
+		this._inputField.addEventListener('input', this._inputFieldListener);
+		this._inputColor.addEventListener('input', this._inputColorListener);
+		this._canvasWidthButton.addEventListener('input', this._widthButtonEvent);
+		this._canvasHeightButton.addEventListener('input', this._heightButtonEvent);
+
+		if (this._keyboardChecker)
+		{		
+			this._keyboardChecker.addEventListener('click', this._keyboardCheckerListener);
 		}
 	}
 }

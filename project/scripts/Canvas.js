@@ -2,46 +2,46 @@ import {FrameHandler} from './FrameHandler.js'
 import {Drawing} from './drawLine.js'
 import {UIController} from './UIController.js'
 
-var Canvas = function (wrap, device = 'mouse') {	
-	let self = this;
+class Canvas {	
+	constructor (wrap, device = 'mouse') {
+		// wrap
+		this._canvasWrap = document.querySelector(wrap + ' .canvas_wrap');
+		this._element = this._canvasWrap.getContext('2d');
 
-	// wrap
-	self._canvasWrap = document.querySelector(wrap + ' .canvas_wrap');
-	self._element = self._canvasWrap.getContext('2d');
+		// define new objects
+		this._frameHandler = new FrameHandler(this._canvasWrap, this._element, wrap);
+		this._controller = new UIController(this._canvasWrap, this._element, wrap, this._frameHandler);
+		this._drawing = new Drawing(this._element, this._canvasWrap, this._controller, this._frameHandler, device);
 
-	// define new objects
-	self._frameHandler = new FrameHandler(self._canvasWrap, self._element, wrap);
-	self._controller = new UIController(self._canvasWrap, self._element, wrap, self._frameHandler);
-	self._drawing = new Drawing(self._element, self._canvasWrap, self._controller, self._frameHandler, device);
+		// set event list
+		switch (device) {
+			case 'mouse':
+				this._eventList = ['mousedown', 'mouseup'];
+				break;
 
-	// set event list
-	switch (device) {
-		case 'mouse':
-			self._eventList = ['mousedown', 'mouseup'];
-			break;
+			case 'screen':
+				this._eventList = ['touchstart', 'touchend'];
+				break;
 
-		case 'screen':
-			self._eventList = ['touchstart', 'touchend'];
-			break;
+			case 'keyboard':
+				this._eventList = ['keydown', 'keyup'];
+				break;
 
-		case 'keyboard':
-			self._eventList = ['keydown', 'keyup'];
-			break;
+			default: return false;
+		}
 
-		default: return false;
-	}
+		// add drawing feature
+		if (device == 'keyboard')
+		{
+			addEventListener(this._eventList[0], function(e) {this._drawing._beginDraw(e)}, false);
+			addEventListener(this._eventList[1], function(e) {this._drawing._endDraw(e)}, false);	
+		}
 
-	// add drawing feature
-	if (device == 'keyboard')
-	{
-		addEventListener(self._eventList[0], function(e) {self._drawing._beginDraw(e)}, false);
-		addEventListener(self._eventList[1], function(e) {self._drawing._endDraw(e)}, false);	
-	}
-
-	else
-	{
-		self._canvasWrap.addEventListener(self._eventList[0], function(e) {self._drawing._beginDraw(e)}, false);
-		self._canvasWrap.addEventListener(self._eventList[1], function(e) {self._drawing._endDraw(e)}, false);
+		else
+		{
+			this._canvasWrap.addEventListener(this._eventList[0], function(e) {this._drawing._beginDraw(e)}, false);
+			this._canvasWrap.addEventListener(this._eventList[1], function(e) {this._drawing._endDraw(e)}, false);
+		}
 	}
 }
 

@@ -1,72 +1,72 @@
-export var FrameHandler = function(wrap, element, parent) {
-	let self = this;
+export class FrameHandler {
+	constructor (wrap, element, parent) {
+		// wrap
+		this._wrap = wrap;
+		this._element = element;
 
-	// wrap
-	self._wrap = wrap;
-	self._element = element;
+		// data
+		this._frames = [];
+		this._frameCounter = -1;
 
-	// data
-	self._frames = [];
-	self._frameCounter = -1;
+		// buttons
+		this._nextBtn = wrapClassName('nextBtn');
+		this._prevBtn = wrapClassName('prevBtn');
+		this._clearBtn = wrapClassName('clear');
+		this._saveBtn = wrapClassName('save');
 
-	// buttons
-	self._nextBtn = wrapClassName('nextBtn');
-	self._prevBtn = wrapClassName('prevBtn');
-	self._clearBtn = wrapClassName('clear');
-	self._saveBtn = wrapClassName('save');
-
-	// extra functions
-	function wrapClassName(name) {
-		return document.querySelector(parent + ' .' + name);
-	}
-
-	function increaseFrameCounter() {
-		self._frameCounter++;
-	}
-
-	function decreaseFrameCounter() {
-		self._frameCounter--;
-	}
-
-	function resetFrames() {
-		self._frames = [];
-	}
-
-	function resetCounter() {
-		self._frameCounter = -1;
-	}
-
-	// event listeners
-	self._nextBtn.onclick = () => {
-		if (self._frameCounter != self._frames.length - 1)
-		{
-			increaseFrameCounter();
-			self._element.putImageData(self._frames[self._frameCounter], 0, 0);
+		// extra functions
+		function wrapClassName(name) {
+			return document.querySelector(parent + ' .' + name);
 		}
-	}
 
-	self._prevBtn.onclick = () => {
-		if (self._frameCounter <= 0)
-		{
-			self._element.clearRect(0, 0, self._wrap.width, self._wrap.height);
+		function increaseFrameCounter() {
+			this._frameCounter++;
+		}
+
+		function decreaseFrameCounter() {
+			this._frameCounter--;
+		}
+
+		function resetFrames() {
+			this._frames = [];
+		}
+
+		function resetCounter() {
+			this._frameCounter = -1;
+		}
+
+		// event listeners
+		this._nextBtn.onclick = () => {
+			if (this._frameCounter != this._frames.length - 1)
+			{
+				increaseFrameCounter();
+				this._element.putImageData(this._frames[this._frameCounter], 0, 0);
+			}
+		}
+
+		this._prevBtn.onclick = () => {
+			if (this._frameCounter <= 0)
+			{
+				this._element.clearRect(0, 0, this._wrap.width, this._wrap.height);
+				resetCounter();
+			}
+
+			else 
+			{
+				decreaseFrameCounter();
+				this._element.putImageData(this._frames[this._frameCounter], 0, 0);
+			}
+		}
+
+		this._clearBtn.onclick = () => {
+			this._element.clearRect(0, 0, this._wrap.width, this._wrap.height);
+			resetFrames();
 			resetCounter();
 		}
 
-		else 
-		{
-			decreaseFrameCounter();
-			self._element.putImageData(self._frames[self._frameCounter], 0, 0);
+		this._saveBtn.onclick = () => {
+			this._saveBtn.href = this._wrap.toDataURL();
+			this._saveBtn.download = `my canvas paint ${this._frameCounter + 1}`;
 		}
-	}
-
-	self._clearBtn.onclick = () => {
-		self._element.clearRect(0, 0, self._wrap.width, self._wrap.height);
-		resetFrames();
-		resetCounter();
-	}
-
-	self._saveBtn.onclick = () => {
-		self._saveBtn.href = self._wrap.toDataURL();
-		self._saveBtn.download = `my canvas paint ${self._frameCounter + 1}`;
 	}
 }
