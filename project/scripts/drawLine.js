@@ -83,6 +83,11 @@ export class Drawing {
 			}
 		}
 
+		continiousLineDrawing(e) {
+			this.beginDraw(e);
+			this.endDraw(e);
+		}
+
 		endDraw(e) {
 			// end coordinates
 			switch (this._device) {

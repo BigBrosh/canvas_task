@@ -26,7 +26,7 @@ class Canvas {
 				break;
 
 			case 'keyboard':
-				this._eventList = ['keydown', 'keyup'];
+				this._eventList = ['keydown'];
 				break;
 
 			default: return false;
@@ -35,8 +35,7 @@ class Canvas {
 		// add drawing feature
 		if (device == 'keyboard')
 		{
-			addEventListener(this._eventList[0], (e) => {this._drawing.beginDraw(e)}, false);
-			addEventListener(this._eventList[1], (e) => {this._drawing.endDraw(e)}, false);	
+			addEventListener(this._eventList[0], (e) => {this._drawing.continiousLineDrawing(e)}, false);
 		}
 
 		else
