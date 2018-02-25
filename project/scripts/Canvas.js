@@ -1,7 +1,8 @@
-import {FrameHandler} from './FrameHandler.js'
-import {Drawing} from './drawLine.js'
-import {UIController} from './UIController.js'
-import {UIController2} from './UIController2.js'
+import '../../css/main.css';
+import {FrameHandler} from './FrameHandler.js';
+import {Drawing} from './drawLine.js';
+import {UIController} from './UIController.js';
+import {UIController2} from './UIController2.js';
 
 class Canvas {	
 	constructor (wrap, device = 'mouse') {
