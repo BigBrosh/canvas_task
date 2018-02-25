@@ -1,80 +1,110 @@
-/******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
-/******/
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
-/******/ 			return installedModules[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
-/******/
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-/******/
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/
-/******/
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-/******/
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-/******/
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, {
-/******/ 				configurable: false,
-/******/ 				enumerable: true,
-/******/ 				get: getter
-/******/ 			});
-/******/ 		}
-/******/ 	};
-/******/
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-/******/
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
-/******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
-/******/ })
-/************************************************************************/
-/******/ ([
-/* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+body {
+  font-family: 'Arial', sans-serif;
+  overflow-x: hidden;
+}
 
-module.exports = __webpack_require__(1);
+body.active {
+  overflow-y: hidden;
+}
 
+h2 {
+  margin: 0 auto;
+}
 
-/***/ }),
-/* 1 */
-/***/ (function(module, exports) {
+.canvas_wrap {
+  border: 1px solid blue;
+}
 
-throw new Error("Module parse failed: Unexpected token (1:5)\nYou may need an appropriate loader to handle this file type.\n| body {\r\n|   font-family: 'Arial', sans-serif;\r\n|   overflow-x: hidden;\r");
+.main_wrapp {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: fit-content;
+  margin: 0 auto;
+}
 
-/***/ })
-/******/ ]);
+.main_wrapp > * {
+  margin-bottom: 12px;
+}
+
+.main_wrapp table {
+  margin: 0 auto;
+}
+
+.main_wrapp .keyboardChecker_wrapp {
+  margin: 0 auto 15px;
+}
+
+.main_wrapp .keyboardChecker_wrapp > *{
+    vertical-align: bottom;
+}
+
+.keyboardChecker:checked ~ body{
+    background: red;
+}
+
+table td {
+  padding: 4px 8px 4px 0;
+}
+
+table td > * {
+  vertical-align: middle;
+}
+
+.main_wrapp input {
+  padding: 3px;
+  border: 1px solid rgba(0, 0, 0, .6);
+}
+
+.main_wrapp input[type='range'] {
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+
+.main_wrapp input[type='color'] {
+  cursor: pointer;
+}
+
+.main_wrapp button {
+  margin: 0 5px;
+  cursor: pointer;
+  padding: 6px 14px;
+  border: none;
+  background-color: #59a6ff;
+  color: white;
+  border-radius: 14px;
+  transform: scale(1);
+  transition: transform .2s;
+  outline: none;
+}
+
+.main_wrapp button:hover {
+  transform: scale(1.2);
+  transition: transform .2s;
+}
+
+.state_buttons {
+  margin-bottom: 30px;
+}
+
+.canvas_wrap, .state_buttons, .buttons_wrap {
+  align-self: center;
+}
+
+.buttons_wrap {
+  margin-top: 15px;
+}
+
+@media screen and (max-width: 480px) {
+  .main_wrapp {
+    padding: 10px;
+  }
+  .main_wrapp input{
+    max-width: 70px;
+  }
+  table td {
+    padding: 4px 0;
+    min-width: 120px;
+  }
+}
