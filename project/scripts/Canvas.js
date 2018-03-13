@@ -2,7 +2,7 @@ import '../../css/main.css';
 import {FrameHandler} from './FrameHandler.js';
 import {Drawing} from './drawLine.js';
 import {UIController} from './UIController.js';
-import {UIController2} from './UIController2.js';
+import {UIController2} from './UIController.js';
 
 class Canvas {	
 	constructor (wrap, device = 'mouse') {
@@ -46,12 +46,12 @@ class Canvas {
 		}
 	}
 
-	setController(Parent) {
-		this._controller = new Parent(this._canvasWrap, this._element, this._wrapName, this._frameHandler);
-	}
-
 	setFrameHandler(Parent) {
 		this._frameHandler = new Parent(this._canvasWrap, this._element, this._wrapName);
+	}
+
+	setController(Parent) {
+		this._controller = new Parent(this._canvasWrap, this._element, this._wrapName, this._frameHandler);
 	}
 
 	setDrawing(Parent) {

@@ -89,3 +89,12 @@ export class UIController {
 		this._element.putImageData(this._frameHandler._frames[this._frameHandler._frameCounter], 0, 0);
 	}
 }
+
+export class UIController2 extends UIController {
+	constructor() {
+		super(...arguments);
+		this._lineWidth = 7;
+		this._inputRange.value = this._lineWidth;
+		this._inputField.value = this._lineWidth;
+	}
+}
